@@ -467,7 +467,7 @@ static int do_conv_fp( T_FormatSpec * pspec,
     size_t length = 0;
     size_t ps1 = 0, ps2 = 0;
     const char *s = "?";
-    double dv = va_arg( *ap, double ); /* consume argument */
+    uint64_t dv = va_arg( *ap, uint64_t ); /* consume argument */
 
     length = STRLEN( s );
     if ( pspec->prec >= 0 )
@@ -488,6 +488,8 @@ static int do_conv_k( T_FormatSpec * pspec,
                       void *      (* cons)(void *, const char *, size_t),
                       void * *       parg )
 {
+    size_t length = 0;
+    size_t ps1 = 0, ps2 = 0;
     size_t total_bits = pspec->xp.w_int + pspec->xp.w_frac;
     size_t total_bytes = ( total_bits + 7 ) / 8;
     long v;
